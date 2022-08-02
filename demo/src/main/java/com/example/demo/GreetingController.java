@@ -11,27 +11,32 @@ import api.CrDateTime;
 @RestController
 public class GreetingController {
 
-    static int[] test = { 2022, 10, 10 };
-    //private static final String template = setDate(test) + "  %s!";
+    // private static final String template = setDate(test) + " %s!";
     private final AtomicLong counter = new AtomicLong();
-    private final static String nameTest = "testymctest";
+
     // private String test = setDate();
 
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = nameTest) String name) {
-        String test1 = "MINA";
+    public Greeting greeting(
+            @RequestParam(value = "name", defaultValue = "default") String name) {
 
+        // System.out.println(name);
         // return new Greeting(counter.incrementAndGet(), String.format(test1, name));
-        String year = name.substring(0, 5);
-        String month = name.substring(4, 7);
-        String day = name.substring(6);
-        String test2 = setDate(year, day, month);
-        return new Greeting(counter.incrementAndGet(), (test1 + " " + test2));
+        if (name.equals("default")) {
+            return new Greeting(counter.incrementAndGet(), (setDate()));
+        } else {
+            String year = name.substring(0, 4);
+            String month = name.substring(4, 6);
+            month = Integer.toString(Integer.valueOf(month) - 1);
+            String day = name.substring(6);
+            String test2 = setDate(year, month, day);
+            return new Greeting(counter.incrementAndGet(), (test2));
+        }
+
     }
 
     public static String setDate() {
         Calendar cal = Calendar.getInstance();
-        // cal.set(2022, 4, 17);
         CrDateTime cr = new CrDateTime(cal);
         return cr.asCopticDate().toCopticString();
     }
