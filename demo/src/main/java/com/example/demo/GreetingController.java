@@ -17,9 +17,7 @@ public class GreetingController {
     // private String test = setDate();
 
     @GetMapping("/greeting")
-    public Greeting greeting(
-            @RequestParam(value = "name", defaultValue = "default") String name) {
-
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "default") String name) {
         // System.out.println(name);
         // return new Greeting(counter.incrementAndGet(), String.format(test1, name));
         if (name.equals("default")) {
@@ -29,10 +27,9 @@ public class GreetingController {
             String month = name.substring(4, 6);
             month = Integer.toString(Integer.valueOf(month) - 1);
             String day = name.substring(6);
-            String test2 = setDate(year, month, day);
-            return new Greeting(counter.incrementAndGet(), (test2));
+            String date = setDate(year, month, day);
+            return new Greeting(counter.incrementAndGet(), (date));
         }
-
     }
 
     public static String setDate() {
