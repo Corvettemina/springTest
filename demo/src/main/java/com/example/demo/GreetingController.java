@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -11,25 +12,25 @@ import api.CrDateTime;
 @RestController
 public class GreetingController {
 
-    // private static final String template = setDate(test) + " %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    // private String test = setDate();
-
     @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value = "name", defaultValue = "default") String name) {
-        // System.out.println(name);
-        // return new Greeting(counter.incrementAndGet(), String.format(test1, name));
-        if (name.equals("default")) {
-            return new Greeting(counter.incrementAndGet(), (setDate()));
+    public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date) {
+        ArrayList<Object> test = new ArrayList<Object>();
+
+        if (date.equals("default")) {
+            test.add(new Greeting(counter.incrementAndGet(), (setDate())));
+
         } else {
-            String year = name.substring(0, 4);
-            String month = name.substring(4, 6);
-            month = Integer.toString(Integer.valueOf(month) - 1);
-            String day = name.substring(6);
-            String date = setDate(year, month, day);
-            return new Greeting(counter.incrementAndGet(), (date));
+            String[] dateArray = date.split("-");
+            String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
+            String currentDate = setDate(dateArray[0], month, dateArray[2]);
+
+            test.add(new Greeting(counter.incrementAndGet(), (currentDate)));
         }
+
+        test.add(new StandardDoxologies());
+        return test;
     }
 
     public static String setDate() {

@@ -3,6 +3,7 @@ package com.example.demo;
 public class Greeting {
     private final long id;
     private final String date;
+    // private final ArrayList<String> doxologies;
 
     public Greeting(long id, String date) {
         this.id = id;
@@ -16,7 +17,5 @@ public class Greeting {
     public String getDate() {
         return date;
     }
-
-
 
 }
