@@ -3,10 +3,14 @@ package com.example.demo;
 import java.util.ArrayList;
 
 public class StandardDoxologies {
-    private final ArrayList<String> doxologies;
+    public int int1;
+    public String string1;
 
     public StandardDoxologies() {
-        this.doxologies = getStandardDoxologies();
+        this.int1 = 1;
+        this.string1 = "Hey";
+        getStandardDoxologies();
+
     }
 
     public ArrayList<String> getStandardDoxologies() {

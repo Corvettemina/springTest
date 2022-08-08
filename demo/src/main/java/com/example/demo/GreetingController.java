@@ -19,31 +19,31 @@ public class GreetingController {
         ArrayList<Object> test = new ArrayList<Object>();
 
         if (date.equals("default")) {
-            test.add(new Greeting(counter.incrementAndGet(), (setDate())));
+            test.add(new Greeting(counter.incrementAndGet(), (setDate().asCopticDate().toCopticString())));
 
         } else {
             String[] dateArray = date.split("-");
             String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
-            String currentDate = setDate(dateArray[0], month, dateArray[2]);
+            CrDateTime currentDate = setDate(dateArray[0], month, dateArray[2]);
 
-            test.add(new Greeting(counter.incrementAndGet(), (currentDate)));
+            test.add(new Greeting(counter.incrementAndGet(), (currentDate.asCopticDate().toCopticString())));
         }
 
         test.add(new StandardDoxologies());
         return test;
     }
 
-    public static String setDate() {
+    public static CrDateTime setDate() {
         Calendar cal = Calendar.getInstance();
         CrDateTime cr = new CrDateTime(cal);
-        return cr.asCopticDate().toCopticString();
+        return cr;
     }
 
-    public static String setDate(String year, String month, String day) {
+    public static CrDateTime setDate(String year, String month, String day) {
         Calendar cal = Calendar.getInstance();
         cal.set(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
         CrDateTime cr = new CrDateTime(cal);
-        return cr.asCopticDate().toCopticString();
+        return cr;
     }
 
 }
