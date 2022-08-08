@@ -34,6 +34,14 @@
 			<version>0.0.17</version>
 			<type>pom</type>
 		</dependency>
+		
+		<dependency>
+			<groupId>1.0</groupId>
+			<artifactId>1.0</artifactId>
+			<version>1.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/copticreader.jar</systemPath>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,13 +54,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>1.0</groupId>
-			<artifactId>1.0</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/copticreader.jar</systemPath>
-		</dependency>
 
 	</dependencies>
 	<build>

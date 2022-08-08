@@ -7,7 +7,14 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.dropbox.core.DbxException;
+
 import api.CrDateTime;
+import api.CurrentSeasonAttributes;
+import api.CurrentSeasonInterpreter;
+import api.OccasionEvaluatorTest;
+import api.SesasonEvaluatorTest;
 
 @RestController
 public class GreetingController {
@@ -17,19 +24,32 @@ public class GreetingController {
     @GetMapping("/greeting")
     public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date) {
         ArrayList<Object> test = new ArrayList<Object>();
-
+        CrDateTime cr;
         if (date.equals("default")) {
-            test.add(new Greeting(counter.incrementAndGet(), (setDate().asCopticDate().toCopticString())));
+            cr = setDate();
+            test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
 
         } else {
             String[] dateArray = date.split("-");
             String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
-            CrDateTime currentDate = setDate(dateArray[0], month, dateArray[2]);
+            cr = setDate(dateArray[0], month, dateArray[2]);
 
-            test.add(new Greeting(counter.incrementAndGet(), (currentDate.asCopticDate().toCopticString())));
+            test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
 
         test.add(new StandardDoxologies());
+        OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
+        SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
+        CurrentSeasonInterpreter current = new CurrentSeasonInterpreter(set, oet);
+
+        CurrentSeasonAttributes csa;
+        try {
+            csa = new CurrentSeasonAttributes(current);
+        } catch (DbxException e) {
+            csa = null;
+            e.printStackTrace();
+        }
+        test.add(csa);
         return test;
     }
 
