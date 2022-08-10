@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class GreetingController {
 
     private final AtomicLong counter = new AtomicLong();
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/greeting")
     public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date) {
         ArrayList<Object> test = new ArrayList<Object>();
@@ -37,7 +39,7 @@ public class GreetingController {
             test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
 
-        test.add(new StandardDoxologies());
+        //test.add(new StandardDoxologies());
         OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
         SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
         CurrentSeasonInterpreter current = new CurrentSeasonInterpreter(set, oet);
