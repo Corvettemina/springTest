@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
@@ -39,7 +40,7 @@ public class GreetingController {
             test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
 
-        //test.add(new StandardDoxologies());
+        // test.add(new StandardDoxologies());
         OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
         SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
         CurrentSeasonInterpreter current = new CurrentSeasonInterpreter(set, oet);
@@ -47,7 +48,7 @@ public class GreetingController {
         CurrentSeasonAttributes csa;
         try {
             csa = new CurrentSeasonAttributes(current);
-        } catch (DbxException e) {
+        } catch (DbxException | IOException e) {
             csa = null;
             e.printStackTrace();
         }
