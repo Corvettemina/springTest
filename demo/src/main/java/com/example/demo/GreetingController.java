@@ -23,21 +23,22 @@ public class GreetingController {
 
     private final AtomicLong counter = new AtomicLong();
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("/greeting")
-    public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date) {
-        ArrayList<Object> test = new ArrayList<Object>();
+    public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date)
+            throws IOException {
+        ArrayList<Object> output = new ArrayList<Object>();
         CrDateTime cr;
         if (date.equals("default")) {
             cr = setDate();
-            test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
+            output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
 
         } else {
             String[] dateArray = date.split("-");
             String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
             cr = setDate(dateArray[0], month, dateArray[2]);
 
-            test.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
+            output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
 
         // test.add(new StandardDoxologies());
@@ -48,12 +49,12 @@ public class GreetingController {
         CurrentSeasonAttributes csa;
         try {
             csa = new CurrentSeasonAttributes(current);
-        } catch (DbxException | IOException e) {
+        } catch (DbxException e) {
             csa = null;
             e.printStackTrace();
         }
-        test.add(csa);
-        return test;
+        output.add(csa);
+        return output;
     }
 
     public static CrDateTime setDate() {
