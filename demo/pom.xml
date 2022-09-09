@@ -16,6 +16,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>com.dropbox.core</groupId>
 			<artifactId>dropbox-core-sdk</artifactId>
@@ -34,7 +35,7 @@
 			<version>0.0.17</version>
 			<type>pom</type>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>1.0</groupId>
 			<artifactId>1.0</artifactId>
