@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +24,7 @@ public class GreetingController {
 
     private final AtomicLong counter = new AtomicLong();
 
+   
     @CrossOrigin
     @GetMapping("/greeting")
     public ArrayList<Object> greeting(@RequestParam(value = "date", defaultValue = "default") String date)
