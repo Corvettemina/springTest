@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dropbox.core.DbxException;
-
 import api.CrDateTime;
 import api.CurrentSeasonAttributes;
 import api.CurrentSeasonInterpreter;
@@ -46,12 +44,9 @@ public class GreetingController {
         CurrentSeasonInterpreter current = new CurrentSeasonInterpreter(set, oet);
 
         CurrentSeasonAttributes csa;
-        try {
-            csa = new CurrentSeasonAttributes(current);
-        } catch (DbxException e) {
-            csa = null;
-            e.printStackTrace();
-        }
+
+        csa = new CurrentSeasonAttributes(current);
+
         output.add(csa);
         return output;
     }
