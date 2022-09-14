@@ -9,7 +9,7 @@ platform.platform()
 if("Windows" in platform.platform()):
     path = "C:/Users/Mina Hanna/OneDrive/"
 if(("Linux" in platform.platform())):
-    path = "/home/root/Dropbox/"
+    path = "/root/Dropbox/"
 
 slides_api = SlidesApi(None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
 files = []
