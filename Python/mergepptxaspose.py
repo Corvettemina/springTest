@@ -26,6 +26,7 @@ slides_api = SlidesApi(
     None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
 files = []
 for i in springApiTest.getlist():
+    print(path + i)
     try:
         with open(path + i, "rb") as file_stream:
             files.append(file_stream.read())
