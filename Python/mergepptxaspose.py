@@ -42,7 +42,7 @@ slides_api.merge_and_save_online(
 
 storage_name = "internal"
 file_path = "MyPresentation.pptx"
-result_path = path + "result.pptx"
+result_path = path + "PowerPoints/result.pptx"
 print("downloading....")
 
 temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
