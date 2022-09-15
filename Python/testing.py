@@ -5,7 +5,7 @@ paths = "/root/Dropbox/PowerPoints/doxologies/stmarkdoxologies.pptx"
 #tempPath = ('/').join(newPath[:(len(newPath)-1)])
 
 # print(tempPath)
-paths = ""
+
 print(paths.lower())
 for path, subdirs, files in os.walk("/root/Dropbox/PowerPoints/"):
     for name in files:
