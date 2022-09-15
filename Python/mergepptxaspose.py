@@ -4,6 +4,17 @@ from asposeslidescloud.apis.slides_api import SlidesApi
 from asposeslidescloud.models import *
 import platform
 import springApiTest
+import os
+
+
+def getfile_insensitive(path):
+    directory, filename = os.path.split(path)
+    directory, filename = (directory or '.'), filename.lower()
+    for f in os.listdir(directory):
+        newpath = os.path.join(directory, f)
+        if os.path.isfile(newpath) and f.lower() == filename:
+            return newpath
+
 
 platform.platform()
 if ("Windows" in platform.platform()):
@@ -15,8 +26,14 @@ slides_api = SlidesApi(
     None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
 files = []
 for i in springApiTest.getlist():
-    with open(path + i, "rb") as file_stream:
-        files.append(file_stream.read())
+    try:
+        with open(path + i, "rb") as file_stream:
+            files.append(file_stream.read())
+    except:
+        with open(getfile_insensitive(path+i), "rb") as file_stream:
+            files.append(file_stream.read())
+
+
 print("uploading....")
 
 slides_api.merge_and_save_online(

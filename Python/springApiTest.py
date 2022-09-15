@@ -1,6 +1,21 @@
 import platform
 import requests
 import json
+import os
+
+if ("Windows" in platform.platform()):
+    path = "C:/Users/Mina Hanna/OneDrive/"
+if (("Linux" in platform.platform())):
+    path = "/root/Dropbox/"
+
+
+def getfile_insensitive(path):
+    directory, filename = os.path.split(path)
+    directory, filename = (directory or '.'), filename.lower()
+    for f in os.listdir(directory):
+        newpath = os.path.join(directory, f)
+        if os.path.isfile(newpath) and f.lower() == filename:
+            return newpath
 
 
 def getlist():
@@ -16,7 +31,8 @@ def getlist():
             if (type(y[1][i]) is list):
                 for l in y[1][i]:
                     # print(l)
-                    # answer.append(l)
+                    #print(getfile_insensitive(path + l))
+                    answer.append(l)
                     pass
             else:
                 # print(y[1][i])
