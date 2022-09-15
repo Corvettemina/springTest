@@ -31,6 +31,7 @@ for i in springApiTest.getlist():
         with open(path + i, "rb") as file_stream:
             files.append(file_stream.read())
     except:
+        print(getfile_insensitive(path+i))
         with open(getfile_insensitive(path+i), "rb") as file_stream:
             files.append(file_stream.read())
 
