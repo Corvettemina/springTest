@@ -7,13 +7,10 @@ import springApiTest
 import os
 
 
-def getfile_insensitive(path):
-    directory, filename = os.path.split(path)
-    directory, filename = (directory or '.'), filename.lower()
-    for f in os.listdir(directory):
-        newpath = os.path.join(directory, f)
-        if os.path.isfile(newpath) and f.lower() == filename:
-            return newpath
+def getfile_insensitive(paths):
+    for path, subdirs, files in os.walk(paths):
+        for name in files:
+            print(os.path.join(path, name))
 
 
 platform.platform()
@@ -46,8 +43,8 @@ file_path = "MyPresentation.pptx"
 result_path = path + "result.pptx"
 print("downloading....")
 
-temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
-shutil.copyfile(temp_path, result_path)
+#emp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+#shutil.copyfile(temp_path, result_path)
 
 '''
 import springApiTest

@@ -32,6 +32,7 @@ def getlist():
                 for l in y[1][i]:
                     # print(l)
                     #print(getfile_insensitive(path + l))
+                    l = l.replace('powerpoints','PowerPoints')
                     answer.append(l)
                     pass
             else:
