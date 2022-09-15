@@ -45,8 +45,8 @@ file_path = "MyPresentation.pptx"
 result_path = path + "result.pptx"
 print("downloading....")
 
-#emp_path = slides_api.download_file("MyPresentation.pptx", "internal")
-#shutil.copyfile(temp_path, result_path)
+temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
+shutil.copyfile(temp_path, result_path)
 
 '''
 import springApiTest
