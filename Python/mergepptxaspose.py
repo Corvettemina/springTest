@@ -8,9 +8,11 @@ import os
 
 
 def getfile_insensitive(paths):
-    for path, subdirs, files in os.walk(paths):
+    for path, subdirs, files in os.walk("/root/Dropbox/PowerPoints/"):
         for name in files:
-            print(os.path.join(path, name))
+            #print(os.path.join(path, name).lower())
+            if (os.path.join(path, name).lower() == paths.lower()):
+                return (os.path.join(path, name))
 
 
 platform.platform()
