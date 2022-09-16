@@ -24,16 +24,16 @@ if (("Linux" in platform.platform())):
 slides_api = SlidesApi(
     None, "2d3b1ec8-738b-4467-915f-af02913aa7fa", "1047551018f0feaacf4296fa054d7d97")
 files = []
-for k in range(3):
-    for i in springApiTest.getlist():
-        print(path + i)
-        try:
-            with open(path + i, "rb") as file_stream:
-                files.append(file_stream.read())
-        except:
-            #print("here", getfile_insensitive(path+i))
-            with open(getfile_insensitive(path+i), "rb") as file_stream:
-                files.append(file_stream.read())
+
+for i in springApiTest.getlist():
+    print(path + i)
+    try:
+        with open(path + i, "rb") as file_stream:
+            files.append(file_stream.read())
+    except:
+        #print("here", getfile_insensitive(path+i))
+        with open(getfile_insensitive(path+i), "rb") as file_stream:
+            files.append(file_stream.read())
 
 
 print("uploading....")
@@ -48,7 +48,7 @@ print("downloading....")
 
 temp_path = slides_api.download_file("MyPresentation.pptx", "internal")
 shutil.copyfile(temp_path, result_path)
-
+print('complete')
 '''
 import springApiTest
 
