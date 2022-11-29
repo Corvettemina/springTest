@@ -10,6 +10,7 @@ import api.SesasonEvaluatorTest;
 
 public class HomeScreen {
 
+    private final String copticDate;
     private final String Sunday;
     private final String Ocassion;
     private final String Season;
@@ -24,6 +25,7 @@ public class HomeScreen {
         this.Sunday = current.Sunday;
         this.Season = current.Season;
         this.Ocassion = current.Ocassion;
+        this.copticDate = cr.asCopticDate().toCopticString();
 
     }
 
@@ -37,6 +39,10 @@ public class HomeScreen {
 
     public String getSeason() {
         return Season;
+    }
+
+    public String getCopticDate() {
+        return copticDate;
     }
 
 }
