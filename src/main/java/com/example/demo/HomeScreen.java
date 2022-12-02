@@ -3,7 +3,6 @@ package com.example.demo;
 import java.util.Calendar;
 
 import api.CrDateTime;
-import api.CurrentSeasonAttributes;
 import api.CurrentSeasonInterpreter;
 import api.OccasionEvaluatorTest;
 import api.SesasonEvaluatorTest;
