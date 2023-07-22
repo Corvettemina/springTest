@@ -39,7 +39,7 @@ public class GreetingController {
 
             output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
-
+        csa = new CurrentSeasonAttributes(current);
         output.add(csa);
         return output;
     }
@@ -62,6 +62,13 @@ public class GreetingController {
     public ArrayList<String> seasonalVespersDoxo() {
         CSAVespers csaVespers = new CSAVespers(current);
         return csaVespers.seasonVespersDoxologies;
+    }
+
+    @CrossOrigin
+    @GetMapping("/VespersGospel")
+    public String VespersGospel() {
+        CSAVespers csaVespers = new CSAVespers(current);
+        return csaVespers.vespersGospel;
     }
 
     @CrossOrigin
