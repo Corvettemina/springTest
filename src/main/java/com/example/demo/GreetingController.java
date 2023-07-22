@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import api.CSAVespers;
 import api.CrDateTime;
 import api.CurrentSeasonAttributes;
 import api.CurrentSeasonInterpreter;
@@ -22,6 +23,7 @@ public class GreetingController {
     private final AtomicLong counter = new AtomicLong();
 
     private CurrentSeasonAttributes csa;
+    private CurrentSeasonInterpreter current;
     private static CrDateTime cr;
 
     @CrossOrigin
@@ -58,7 +60,8 @@ public class GreetingController {
     @CrossOrigin
     @GetMapping("/seasonalVespersDoxo")
     public ArrayList<String> seasonalVespersDoxo() {
-        return csa.seasonVespersDoxologies;
+        CSAVespers csaVespers = new CSAVespers(current);
+        return csaVespers.seasonVespersDoxologies;
     }
 
     @CrossOrigin
@@ -69,8 +72,8 @@ public class GreetingController {
         cr = setDate(dateArray[0], month, dateArray[2]);
         OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
         SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
-        CurrentSeasonInterpreter current = new CurrentSeasonInterpreter(set, oet);
-        csa = new CurrentSeasonAttributes(current);
+        current = new CurrentSeasonInterpreter(set, oet);
+        // csa = new CurrentSeasonAttributes(current);
 
         return "Date recived sucussfully: " + date;
 
