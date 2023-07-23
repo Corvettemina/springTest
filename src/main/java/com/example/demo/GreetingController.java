@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import api.CSACommunion;
+import api.CSALiturgyOfTheWord;
+import api.CSALiturgyofTheFaithful;
 import api.CSAMatins;
+import api.CSAOffering;
 import api.CSAVespers;
 import api.CrDateTime;
 import api.CurrentSeasonAttributes;
@@ -70,6 +74,34 @@ public class GreetingController {
     public CSAMatins matins() {
         CSAMatins csaMatins = new CSAMatins(current);
         return csaMatins;
+    }
+
+    @CrossOrigin
+    @GetMapping("/offering")
+    public CSAOffering offering() {
+        CSAOffering csaOffering = new CSAOffering(current);
+        return csaOffering;
+    }
+
+    @CrossOrigin
+    @GetMapping("/liturgyOfWord")
+    public CSALiturgyOfTheWord liturgyOfWord() {
+        CSALiturgyOfTheWord csaliturgyOfWord = new CSALiturgyOfTheWord(current);
+        return csaliturgyOfWord;
+    }
+
+    @CrossOrigin
+    @GetMapping("/liturgyOfFaithful")
+    public CSALiturgyofTheFaithful liturgyOfFaithful() {
+        CSALiturgyofTheFaithful csaliturgyOFaithful = new CSALiturgyofTheFaithful(current);
+        return csaliturgyOFaithful;
+    }
+
+    @CrossOrigin
+    @GetMapping("/communion")
+    public CSACommunion communion() {
+        CSACommunion csaCommunion = new CSACommunion(current);
+        return csaCommunion;
     }
 
     @CrossOrigin
