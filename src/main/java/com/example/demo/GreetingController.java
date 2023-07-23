@@ -41,6 +41,12 @@ public class GreetingController {
             output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
 
         } else {
+            String[] dateArray = date.split("-");
+            String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
+            cr = setDate(dateArray[0], month, dateArray[2]);
+            OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
+            SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
+            current = new CurrentSeasonInterpreter(set, oet);
 
             output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
         }
