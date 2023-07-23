@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import api.CSAMatins;
 import api.CSAVespers;
 import api.CrDateTime;
 import api.CurrentSeasonAttributes;
@@ -58,17 +59,17 @@ public class GreetingController {
     }
 
     @CrossOrigin
-    @GetMapping("/seasonalVespersDoxo")
-    public ArrayList<String> seasonalVespersDoxo() {
+    @GetMapping("/vespers")
+    public CSAVespers seasonalVespersDoxo() {
         CSAVespers csaVespers = new CSAVespers(current);
-        return csaVespers.seasonVespersDoxologies;
+        return csaVespers;
     }
 
     @CrossOrigin
-    @GetMapping("/VespersGospel")
-    public String VespersGospel() {
-        CSAVespers csaVespers = new CSAVespers(current);
-        return csaVespers.vespersGospel;
+    @GetMapping("/matins")
+    public CSAMatins matins() {
+        CSAMatins csaMatins = new CSAMatins(current);
+        return csaMatins;
     }
 
     @CrossOrigin
