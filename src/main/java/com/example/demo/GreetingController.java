@@ -70,9 +70,14 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/vespers")
-    public CSAVespers seasonalVespersDoxo() {
+    public ArrayList<Object> seasonalVespersDoxo() {
+        ArrayList<Object> vespers = new ArrayList<Object>();
         CSAVespers csaVespers = new CSAVespers(current);
-        return csaVespers;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        vespers.add(homeScreen);
+        vespers.add(csaVespers);
+        
+        return vespers;
     }
 
     @CrossOrigin

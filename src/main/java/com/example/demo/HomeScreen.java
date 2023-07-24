@@ -28,6 +28,15 @@ public class HomeScreen {
 
     }
 
+    public HomeScreen(CurrentSeasonInterpreter current, CrDateTime cr) {
+
+        this.Sunday = current.Sunday;
+        this.Season = current.Season;
+        this.Ocassion = current.Ocassion;
+        this.copticDate = cr.asCopticDate().toCopticString();
+
+    }
+
     public String getSunday() {
         return Sunday;
     }
