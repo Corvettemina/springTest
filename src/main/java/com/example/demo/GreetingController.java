@@ -76,43 +76,68 @@ public class GreetingController {
         HomeScreen homeScreen = new HomeScreen(current, cr);
         vespers.add(homeScreen);
         vespers.add(csaVespers);
-        
+
         return vespers;
     }
 
     @CrossOrigin
     @GetMapping("/matins")
-    public CSAMatins matins() {
+    public ArrayList<Object> matins() {
+        ArrayList<Object> matins = new ArrayList<Object>();
         CSAMatins csaMatins = new CSAMatins(current);
-        return csaMatins;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        matins.add(homeScreen);
+        matins.add(csaMatins);
+
+        return matins;
     }
 
     @CrossOrigin
     @GetMapping("/offering")
-    public CSAOffering offering() {
+    public ArrayList<Object> offering() {
+        ArrayList<Object> offering = new ArrayList<Object>();
         CSAOffering csaOffering = new CSAOffering(current);
-        return csaOffering;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        offering.add(homeScreen);
+        offering.add(csaOffering);
+
+        return offering;
     }
 
     @CrossOrigin
     @GetMapping("/liturgyOfWord")
-    public CSALiturgyOfTheWord liturgyOfWord() {
+    public ArrayList<Object> liturgyOfWord() {
+        ArrayList<Object> liturgyOfWord = new ArrayList<Object>();
         CSALiturgyOfTheWord csaliturgyOfWord = new CSALiturgyOfTheWord(current);
-        return csaliturgyOfWord;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        liturgyOfWord.add(homeScreen);
+        liturgyOfWord.add(csaliturgyOfWord);
+
+        return liturgyOfWord;
     }
 
     @CrossOrigin
     @GetMapping("/liturgyOfFaithful")
-    public CSALiturgyofTheFaithful liturgyOfFaithful() {
+    public ArrayList<Object> liturgyOfFaithful() {
+        ArrayList<Object> liturgyOfFaithful = new ArrayList<Object>();
         CSALiturgyofTheFaithful csaliturgyOFaithful = new CSALiturgyofTheFaithful(current);
-        return csaliturgyOFaithful;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        liturgyOfFaithful.add(homeScreen);
+        liturgyOfFaithful.add(csaliturgyOFaithful);
+
+        return liturgyOfFaithful;
     }
 
     @CrossOrigin
     @GetMapping("/communion")
-    public CSACommunion communion() {
+    public ArrayList<Object> communion() {
+        ArrayList<Object> communion = new ArrayList<Object>();
         CSACommunion csaCommunion = new CSACommunion(current);
-        return csaCommunion;
+        HomeScreen homeScreen = new HomeScreen(current, cr);
+        communion.add(homeScreen);
+        communion.add(csaCommunion);
+
+        return communion;
     }
 
     @CrossOrigin
