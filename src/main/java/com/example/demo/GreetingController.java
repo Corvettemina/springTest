@@ -70,7 +70,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/vespers")
-    public ArrayList<Object> seasonalVespersDoxo() {
+    public ArrayList<Object> seasonalVespersDoxo(@RequestParam("date") String date) {
+        date(date);
+        System.out.println(date);
         ArrayList<Object> vespers = new ArrayList<Object>();
         CSAVespers csaVespers = new CSAVespers(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -82,7 +84,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/matins")
-    public ArrayList<Object> matins() {
+    public ArrayList<Object> matins(@RequestParam("date") String date) {
+        date(date);
+
         ArrayList<Object> matins = new ArrayList<Object>();
         CSAMatins csaMatins = new CSAMatins(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -94,7 +98,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/offering")
-    public ArrayList<Object> offering() {
+    public ArrayList<Object> offering(@RequestParam("date") String date) {
+        date(date);
+
         ArrayList<Object> offering = new ArrayList<Object>();
         CSAOffering csaOffering = new CSAOffering(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -106,7 +112,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/liturgyOfWord")
-    public ArrayList<Object> liturgyOfWord() {
+    public ArrayList<Object> liturgyOfWord(@RequestParam("date") String date) {
+        date(date);
+
         ArrayList<Object> liturgyOfWord = new ArrayList<Object>();
         CSALiturgyOfTheWord csaliturgyOfWord = new CSALiturgyOfTheWord(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -118,7 +126,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/liturgyOfFaithful")
-    public ArrayList<Object> liturgyOfFaithful() {
+    public ArrayList<Object> liturgyOfFaithful(@RequestParam("date") String date) {
+        date(date);
+
         ArrayList<Object> liturgyOfFaithful = new ArrayList<Object>();
         CSALiturgyofTheFaithful csaliturgyOFaithful = new CSALiturgyofTheFaithful(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -130,7 +140,9 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/communion")
-    public ArrayList<Object> communion() {
+    public ArrayList<Object> communion(@RequestParam("date") String date) {
+        date(date);
+
         ArrayList<Object> communion = new ArrayList<Object>();
         CSACommunion csaCommunion = new CSACommunion(current);
         HomeScreen homeScreen = new HomeScreen(current, cr);
@@ -140,9 +152,7 @@ public class GreetingController {
         return communion;
     }
 
-    @CrossOrigin
-    @PostMapping("/date")
-    public String date(@RequestParam("date") String date) {
+    public void date(String date) {
         String[] dateArray = date.split("-");
         String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
         cr = setDate(dateArray[0], month, dateArray[2]);
@@ -150,8 +160,6 @@ public class GreetingController {
         SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
         current = new CurrentSeasonInterpreter(set, oet);
         // csa = new CurrentSeasonAttributes(current);
-
-        return "Date recived sucussfully: " + date;
 
     }
 
