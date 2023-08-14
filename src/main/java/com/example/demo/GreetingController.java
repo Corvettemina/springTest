@@ -38,7 +38,7 @@ public class GreetingController {
         ArrayList<Object> output = new ArrayList<Object>();
 
         if (date.equals("default")) {
-            output.add(new Greeting(counter.incrementAndGet(), (cr.asCopticDate().toCopticString())));
+            output.add(new Greeting(counter.incrementAndGet(), (setDate().asCopticDate().toCopticString())));
 
         } else {
             String[] dateArray = date.split("-");
