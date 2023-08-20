@@ -152,6 +152,13 @@ public class GreetingController {
         return communion;
     }
 
+    @CrossOrigin
+    @GetMapping("/verb")
+    public String verb(@RequestParam("date") String date) {
+        date(date);
+        return current.akiAktonk;
+    }
+
     public void date(String date) {
         String[] dateArray = date.split("-");
         String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
