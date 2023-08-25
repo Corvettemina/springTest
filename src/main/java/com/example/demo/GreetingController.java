@@ -159,6 +159,13 @@ public class GreetingController {
         return current.akiAktonk;
     }
 
+    @CrossOrigin
+    @GetMapping("/pptname")
+    public String pptName(@RequestParam("date") String date) {
+        date(date);
+        return current.pptName;
+    }
+
     public void date(String date) {
         String[] dateArray = date.split("-");
         String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
