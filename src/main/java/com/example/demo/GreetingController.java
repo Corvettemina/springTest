@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.atomic.AtomicLong;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -161,9 +164,11 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/pptname")
-    public String pptName(@RequestParam("date") String date) {
+    public ResponseEntity<PptResponse> pptName(@RequestParam("date") String date) {
         date(date);
-        return current.pptName;
+
+        PptResponse response = new PptResponse(current.pptName);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     public void date(String date) {
