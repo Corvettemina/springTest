@@ -32,7 +32,7 @@ public class HomeScreen {
         Calendar cal = Calendar.getInstance();
         String[] dateArray = date.split("-");
         String month = Integer.toString(Integer.valueOf(dateArray[1]) - 1);
-        cal.set(Integer.valueOf(dateArray[0]), Integer.valueOf(month)-1, Integer.valueOf(dateArray[2]));
+        cal.set(Integer.valueOf(dateArray[0]), Integer.valueOf(month), Integer.valueOf(dateArray[2]));
         CrDateTime cr = new CrDateTime(cal);
         OccasionEvaluatorTest oet = new OccasionEvaluatorTest(cr);
         SesasonEvaluatorTest set = new SesasonEvaluatorTest(oet);
