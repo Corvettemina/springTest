@@ -72,6 +72,18 @@ public class GreetingController {
     }
 
     @CrossOrigin
+    @GetMapping("/optionalDoxologies")
+    public ArrayList<Object> optionalDocologies() {
+        date("2022-06-22");
+
+        ArrayList<Object> doxologies = new ArrayList<Object>();
+
+        doxologies.add(current.getOptionalDoxologies());
+
+        return doxologies;
+    }
+
+    @CrossOrigin
     @GetMapping("/vespers")
     public ArrayList<Object> seasonalVespersDoxo(@RequestParam("date") String date) {
         date(date);
