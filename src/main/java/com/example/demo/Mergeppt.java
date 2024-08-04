@@ -58,7 +58,7 @@ public class Mergeppt {
                 inputstream.close();
             }
 
-            String mergedFile = intropath + "/PowerPoints/result1.pptx";
+            String mergedFile = intropath + "PowerPoints/result1.pptx";
             // Creating new file path
             FileOutputStream out = new FileOutputStream(mergedFile);
             // Creating the file object
