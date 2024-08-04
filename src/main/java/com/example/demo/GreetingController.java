@@ -73,7 +73,7 @@ public class GreetingController {
 
     @CrossOrigin
     @GetMapping("/optionalDoxologies")
-    public ArrayList<Object> optionalDocologies() {
+    public ArrayList<Object> optionalDoxologies() {
         date("2022-06-22");
 
         ArrayList<Object> doxologies = new ArrayList<Object>();
