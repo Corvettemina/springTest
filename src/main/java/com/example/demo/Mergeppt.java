@@ -37,7 +37,7 @@ public class Mergeppt {
 
             for (String arg : powerpoints) {
                 // String newFile = arg.replaceAll("/", "\\");
-                FileInputStream inputstream = new FileInputStream(intropath + arg);
+                FileInputStream inputstream = new FileInputStream(arg);
                 // Getting current presentation file path in
                 // a FileInputStream
                 XMLSlideShow src = new XMLSlideShow(inputstream);
