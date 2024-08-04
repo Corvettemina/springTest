@@ -26,6 +26,6 @@ HELP.md
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
- *.class
+*.class
 ### VS Code ###
 .vscode/
