@@ -3,23 +3,15 @@ package com.example.demo;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Stream;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.RestController;
 
 // importing apache POI environment packages
@@ -40,19 +32,6 @@ public class Mergeppt {
 
         // Set the page size to 16:9 aspect ratio
         ppt.setPageSize(new java.awt.Dimension(960, 540));
-
-        String path = System.getProperty("user.dir");
-        // Getting path of current working directory
-
-        File file = new File(path);
-        // Creating empty file using File object
-
-        // presentationList.add("C:\\Users\\Mina
-        // Hanna\\Dropbox\\PowerPoints\\Lent\\VerseOfCymbalsLent - Watos.pptx");
-        // presentationList.add("C:\\Users\\Mina
-        // Hanna\\Dropbox\\PowerPoints\\Lent\\VerseOfCymbalsLent - Adam.pptx");
-        // Filtering all presentation file paths and
-        // appending to presentationList
 
         if (!powerpoints.isEmpty()) {
 
@@ -75,16 +54,17 @@ public class Mergeppt {
                     // Appending each presentation slide to
                     // empty presentation object ppt
                 }
-
+                src.close();
                 inputstream.close();
             }
 
-            String mergedFile = path + "/merged.pptx";
+            String mergedFile = intropath + "/PowerPoints/result1.pptx";
             // Creating new file path
             FileOutputStream out = new FileOutputStream(mergedFile);
             // Creating the file object
 
             ppt.write(out);
+            ppt.close();
             // Saving the changes to the new file
             System.out.println("All files merged successfully!");
             System.out.println(mergedFile);
