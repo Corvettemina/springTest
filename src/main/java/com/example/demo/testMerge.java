@@ -1,0 +1,64 @@
+package com.example.demo;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import org.apache.poi.xslf.usermodel.XMLSlideShow;
+import org.apache.poi.xslf.usermodel.XSLFSlide;
+import org.apache.poi.xslf.usermodel.XSLFSlideLayout;
+import org.apache.poi.xslf.usermodel.XSLFSlideMaster;
+
+public class testMerge {
+    public static void main(String[] args) throws IOException {
+        String intropath = "C:/Users/Mina Hanna/Dropbox/";
+        String filePath = "C:\\Users\\Mina Hanna\\Documents\\springTest\\demo\\src\\main\\java\\com\\example\\demo\\ppts.txt";
+        ArrayList<String> powerpoints = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                powerpoints.add(intropath + line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(powerpoints);
+        XMLSlideShow ppt = new XMLSlideShow();
+        // Creating an empty presentation
+        if (!powerpoints.isEmpty()) {
+
+            for (String arg : powerpoints) {
+
+                FileInputStream inputstream = new FileInputStream(arg);
+
+                XMLSlideShow src = new XMLSlideShow(inputstream);
+
+                ppt.setPageSize(src.getPageSize());
+
+                for (XSLFSlide srcSlide : src.getSlides()) {
+
+                    ppt.createSlide().importContent(srcSlide);
+
+                }
+                src.close();
+                inputstream.close();
+            }
+            String mergedFile = intropath + "PowerPoints/result1.pptx";
+            FileOutputStream out = new FileOutputStream(mergedFile);
+            ppt.write(out);
+            ppt.close();
+            out.close();
+
+            System.out.println("All files merged successfully!");
+            System.out.println(mergedFile);
+        } else {
+            System.out.println("No Presentation files found in current directory!");
+        }
+
+    }
+}
