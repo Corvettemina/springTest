@@ -34,13 +34,10 @@ public class Mergeppt {
             for (String arg : powerpoints) {
                 FileInputStream inputstream = new FileInputStream(arg);
                 XMLSlideShow src = new XMLSlideShow(inputstream);
-
+                ppt.setPageSize(src.getPageSize());
                 // Copy slides along with their layouts
                 for (XSLFSlide srcSlide : src.getSlides()) {
-                    XSLFSlideMaster master = srcSlide.getSlideLayout().getSlideMaster();
-                    XSLFSlideLayout layout = srcSlide.getSlideLayout();
-                    XSLFSlide newSlide = ppt.createSlide(layout);
-                    newSlide.importContent(srcSlide);
+                    ppt.createSlide().importContent(srcSlide);
                 }
 
                 src.close();
