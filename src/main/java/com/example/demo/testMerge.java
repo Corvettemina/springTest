@@ -29,31 +29,26 @@ public class testMerge {
 
         System.out.println(powerpoints);
         XMLSlideShow ppt = new XMLSlideShow();
-        // Creating an empty presentation
-        if (!powerpoints.isEmpty()) {
-
+        if (powerpoints.size() > 0) {
             for (String arg : powerpoints) {
+                try (FileInputStream inputstream = new FileInputStream(arg);
+                        XMLSlideShow src = new XMLSlideShow(inputstream)) {
 
-                FileInputStream inputstream = new FileInputStream(arg);
+                    ppt.setPageSize(src.getPageSize());
 
-                XMLSlideShow src = new XMLSlideShow(inputstream);
-
-                ppt.setPageSize(src.getPageSize());
-
-                for (XSLFSlide srcSlide : src.getSlides()) {
-
-                    ppt.createSlide().importContent(srcSlide);
-
+                    // Copy slides
+                    for (XSLFSlide srcSlide : src.getSlides()) {
+                        ppt.createSlide().importContent(srcSlide);
+                    }
                 }
-                src.close();
-                inputstream.close();
             }
-            String mergedFile = intropath + "PowerPoints/result1.pptx";
-            FileOutputStream out = new FileOutputStream(mergedFile);
-            ppt.write(out);
-            ppt.close();
-            out.close();
 
+            String mergedFile = intropath + "PowerPoints/result1.pptx";
+            try (FileOutputStream out = new FileOutputStream(mergedFile)) {
+                ppt.write(out);
+            }
+
+            ppt.close();
             System.out.println("All files merged successfully!");
             System.out.println(mergedFile);
         } else {
