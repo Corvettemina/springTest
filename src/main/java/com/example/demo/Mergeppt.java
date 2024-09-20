@@ -45,10 +45,16 @@ public class Mergeppt {
             }
 
             String mergedFile = intropath + "PowerPoints/result1.pptx";
-            FileOutputStream out = new FileOutputStream(mergedFile);
-            ppt.write(out);
-            ppt.close();
-            out.close();
+            // FileOutputStream out = new FileOutputStream(mergedFile);
+            try (FileOutputStream out = new FileOutputStream(mergedFile)) {
+                ppt.write(out);
+                ppt.close();
+                out.close();
+            } catch (IOException e) {
+                // handle exception
+                System.out.println(e);
+
+            }
 
             System.out.println("All files merged successfully!");
             System.out.println(mergedFile);
